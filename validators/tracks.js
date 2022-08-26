@@ -20,7 +20,7 @@ const validatorCreateItem = [
     check("artist.nickname")
     .exists()
     .notEmpty(),
-    check("artis.nationality")
+    check("artist.nationality")
     .exists()
     .notEmpty(),
     check("duration")
@@ -44,4 +44,17 @@ const validatorCreateItem = [
 
 
 
-module.exports = {validatorCreateItem};
+const validatorGetItem = [
+    check("id")
+    .exists()
+    .notEmpty()
+    .isMongoId(),
+    (req,res,next) => {
+        return validateResults(req,res,next)
+    }
+
+];
+
+
+
+module.exports = {validatorCreateItem, validatorGetItem};
