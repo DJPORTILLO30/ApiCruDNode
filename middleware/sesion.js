@@ -2,6 +2,8 @@ const {handleHttpError} = require("../utils/handleError");
 const { verifyToken } = require("../utils/handleJWT");
 const {userModel} = require('../models');
 const { matchedData } = require("express-validator");
+const getPropierties = require("../utils/handlePropertiesEngine")
+const propiertiesKey = getPropierties()
 
 const authMiddleware = async (req,res,next) =>{
     try {
@@ -13,8 +15,16 @@ const authMiddleware = async (req,res,next) =>{
         const token = req.headers.authorization.split(' ').pop();
         const dataToken = await verifyToken(token);
 
-        
-        const user = await userModel.findById(dataToken._id)
+        if(!dataToken){
+            handleHttpError(res,"NOT_PAYLOAD_DATA",401);
+            return
+        }
+
+        const query = {
+            [propiertiesKey.id]: dataToken[propiertiesKey.id]
+        }
+
+        const user = await userModel.findOne(query)
         req.user = user
 
         next()
