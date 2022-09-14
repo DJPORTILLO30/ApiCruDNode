@@ -10,13 +10,11 @@ try {
 const passwordHash = await encrypt(req.password)
 const body = {...req,password:passwordHash}
 const dataUser = await userModel.create(body)
-dataUser.set('password',undefined,{strict:false})
 
 const data ={
     token: await tokenSign(dataUser),
     user:dataUser
 }
-res.status(201)
 res.send({data})
 } catch (e) {
     handleHttpError(res,"error de autenticacion")
@@ -31,7 +29,7 @@ const loginCtrl = async (req,res) =>{
             handleHttpError(res,"no existe el usuario",404)
             return
         }
-
+        
         const hashPassword = user.get('password');
         const check = await compare(req.password,hashPassword)
 
@@ -50,6 +48,7 @@ const loginCtrl = async (req,res) =>{
         res.send({data})
         
     } catch (e) {
+        
         handleHttpError(res,"Error_login")
     }
 }
