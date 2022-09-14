@@ -16,7 +16,7 @@ const data ={
     token: await tokenSign(dataUser),
     user:dataUser
 }
-
+res.status(201)
 res.send({data})
 } catch (e) {
     handleHttpError(res,"error de autenticacion")
