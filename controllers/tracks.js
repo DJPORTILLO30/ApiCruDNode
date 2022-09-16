@@ -13,7 +13,7 @@ const getItems =  async (req,res) => {
 
     try {
         const user  = req.user;
-        const data = await tracksModel.findAllData({});
+        const data = await tracksModel.find({});
         res.send({data,user})
     } catch (e) {
         handleHttpError(res,'ERROR_EN_GETITEMS')
@@ -70,19 +70,17 @@ const createItem = async (req,res) => {
  * @param {*} res 
  */
 
-const updateItem =  async (req,res) => {
-
+ const updateItem = async (req, res) => {
     try {
-        const {id, ...body} = matchedData(req);
-        const data = await tracksModel.findOneAndUpdate(
-            id,body
-        )
-        res.send({data})
+      const {id, ...body} = matchedData(req);
+      const data = await tracksModel.findOneAndUpdate(
+        id, body
+      );
+      res.send({ data });
     } catch (e) {
-        handleHttpError(res,'ERROR_EN_UPDATE_ITEMS')
+      handleHttpError(res, "ERROR_UPDATE_ITEMS");
     }
-
-};
+  };
 
 /**
  * Eliminar un registro

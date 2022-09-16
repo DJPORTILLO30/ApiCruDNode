@@ -4,7 +4,7 @@ const NODE_DEV = process.env.NODE_DEV;
 
 const dbConnect = () => {
 
-    const DB_URI = (NODE_DEV=== 'test')? process.env.DB_URI_TEST : process.env.DB_URI ;
+    const DB_URI = (NODE_DEV === 'test') ? process.env.DB_URI_TEST : process.env.DB_URI ;
     mongoose.connect(
         DB_URI,
          {
