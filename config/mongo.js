@@ -1,3 +1,4 @@
+//conexion nosql
 const mongoose = require("mongoose");
 
 const NODE_DEV = process.env.NODE_DEV;
