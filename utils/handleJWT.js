@@ -8,6 +8,7 @@ const propiertiesKey = getPropierties()
  * @param {*} user 
  */
 const tokenSign = async (user) =>{
+    console.log(propiertiesKey.id)
     const sign =  jwt.sign({
         [propiertiesKey.id]: user[propiertiesKey.id],
         role: user.role
