@@ -7,7 +7,7 @@ const StorageScheme = new mongoose.Schema(
         },
         filename:{
             type:String
-        },
+        }
     },
     {
         timestamps:true, //TODO createdAt , updatedAt

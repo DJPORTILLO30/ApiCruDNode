@@ -26,7 +26,7 @@ const router = express.Router();
  *                      description: "Error al obtener la data"
  */
 
-router.get("/",getItems);
+router.get("/",authMiddleware,getItems);
 
 
 
